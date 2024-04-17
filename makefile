@@ -4,3 +4,8 @@ bin/test:src/tui_test.cpp
 run : bin/test
 	./bin/test
 
+bin/space:src/main.cpp
+	g++ src/main.cpp -o bin/space -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom
+
+runTest: bin/space
+	./bin/space
