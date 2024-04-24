@@ -9,3 +9,9 @@ bin/space:src/main.cpp
 
 runTest: bin/space
 	./bin/space
+
+bin/ventana:src/ventana.cpp
+	g++ src/ventana.cpp -o bin/ventana -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom -Iinclude
+
+runventana: bin/ventana
+	./bin/ventana
