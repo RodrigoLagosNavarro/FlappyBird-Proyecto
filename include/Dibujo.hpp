@@ -2,36 +2,57 @@
 #include <string>
 #include <ftxui/screen/screen.hpp>
 
+using namespace std;
+using namespace std;
+
 class Dibujo
 {
 private:
-    int posicionX;
-    int posicionY;
-    string palabra;
-
+    int posicionX = 0;
+    int posicionY = 0;
+    string contenido;
 public:
-    Dibujo(){
-        this->posicionX=0;
-        this->posicionY=0;
-
-    }
-    void Dibujar(ftxui::Screen Pantalla){
-    int posicionPalabraX=0;
-    int posicionPalabraY=0;
-
-    for (auto &&letra : palabra)
+    Dibujo()
     {
-        int posicionFinalX=posicionX+posicionPalabraX;
-        int posicionFinalY=posicionY+posicionPalabraY;
+        this -> posicionX = 0;
+        this -> posicionY = 0;
+    }
+    Dibujo(int posicionX, int posicionY)
+    {
+        this -> posicionX = posicionX;
+        this -> posicionY = posicionY;
+    }
+    Dibujo(list<string> contenido, int posicionX, int posicionY)
+    {
+        this -> contenido = contenido;
+        this -> posicionX = posicionX;
+        this -> posicionY = posicionY;
+    }
+    void Dibujar(ftxui::Screen &pantalla)
+    {
+        int posicionPalabraX = 0;
+        int posicionPalabraY = 0;
+        
+        for (auto &&linea : contenido)
+        {
+            int posicionPalabraX=0;
+            for (auto &&letra : linea)
+        {
+            int posicionFinalX = this->posicionX + posicionPalabraX;
+            int posicionFinalY = this->posicionY + posicionPalabraY;
 
-        Pantalla.PixelAt(
-            posicionFinalX,
-            posicionFinalY
-        ). character=letra;
-        posicionPalabraX++;
+            pantalla.PixelAt(posicionFinalX, posicionFinalY).character = letra;
+            posicionPalabraX++;
+        }
+        }
+        
+       
     }
 
+    void DesplazarX(int distancia){
+        posicionX += distancia;
     }
+    void DesplazarY(int distancia){
+        posicionY += distancia;
     }
-    ~Dibujo();
 };
