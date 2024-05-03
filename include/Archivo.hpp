@@ -2,9 +2,7 @@
 #include <fstream>
 #include <list>
 #include <Dibujo.hpp>
-
 using namespace std;
-using namespace ftxui;
 
 class Archivo
 {
@@ -12,20 +10,20 @@ private:
     fstream archivo;
     list<string> contenido;
 public:
-    Archivo(string path){
+    Archivo(string path)
+    {
         archivo.open(path);
-        while(!archivo.eof())
+        while (!archivo.eof())
         {
             string linea;
-            getline(archivo,linea);
-            lineas.emplace_back(text(linea));
+            getline(archivo, linea);
+            contenido.push_back(linea);
         }
-        this->contenido=vbox(linea);
         archivo.close();
     }
     Dibujo CrearDibujo(){
-        Dibujo temp;
-        return temp
+        Dibujo temp(contenido,0,0);
+        return temp;
     }
-    ~Archivo(){}
+    ~Archivo() {}
 };
