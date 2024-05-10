@@ -1,17 +1,22 @@
-bin/test:src/tui_test.cpp
-	g++ src/tui_test.cpp -o bin/test -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom -Iinclude
+CC=g++
+CFLAGS=-c -Wall
 
-run : bin/test
-	./bin/test
+all: flappybird
 
-bin/space:src/main.cpp
-	g++ src/main.cpp -o bin/space -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom -Iinclude
+flappybird: main.o FlappyBird.o Bird.o Pipe.o
+    $(CC) main.o FlappyBird.o Bird.o Pipe.o -o flappybird
 
-runTest: bin/space
-	./bin/space
+main.o: src/main.cpp
+    $(CC) $(CFLAGS) src/main.cpp
 
-bin/ventana:src/ventana.cpp include/*
-	g++ src/ventana.cpp -o bin/ventana -std=c++2a -lftxui-screen -lftxui-component -lftxui-dom -Iinclude
+FlappyBird.o: src/FlappyBird.cpp
+    $(CC) $(CFLAGS) src/FlappyBird.cpp
 
-runventana: bin/ventana
-	./bin/ventana
+Bird.o: src/Bird.cpp
+    $(CC) $(CFLAGS) src/Bird.cpp
+
+Pipe.o: src/Pipe.cpp
+    $(CC) $(CFLAGS) src/Pipe.cpp
+
+clean:
+    rm -rf *o flappybird
