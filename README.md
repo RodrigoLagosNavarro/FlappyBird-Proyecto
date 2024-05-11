@@ -1,12 +1,28 @@
-# space-invaders
-## Objetivo
-El objetivo de este proyecto es hacer un juego ascii art basado en el famoso juego arcade space invaders.
-### Exploracion
+# Flappy Bird Game
 
-### Carpetas
-bin/ - Contiene los ejecutables del proyecto
-src/ - Contiene el codigo fuente
-include/ - Los archivos de cabecera
-assets/ - Contiene los recursos del proyecto
-docs/ - Contiene la documentacion del proyecto
+Este proyecto es una implementación simple del juego Flappy Bird en C, utilizando la biblioteca de Windows para la interfaz gráfica. El juego presenta un pájaro que el jugador puede hacer saltar para evitar obstáculos en forma de tuberías que se desplazan hacia la izquierda.
 
+## Estructura del Proyecto
+
+El proyecto está estructurado de la siguiente manera:
+
+- **bin**: Contiene los archivos binarios generados después de compilar el código.
+- **docs**: Almacena la documentación del proyecto.
+- **include**: Contiene los archivos de encabezado (.hpp) para cada clase del proyecto.
+- **src**: Contiene los archivos fuente (.cpp) del proyecto.
+- **Makefile**: Archivo Makefile para compilar y ejecutar el proyecto.
+
+## Diagrama de Clases
+
+El diagrama de clases del proyecto incluye las siguientes clases:
+
+- **Bird**: Representa al pájaro en el juego.
+- **Pipe**: Representa las tuberías que el pájaro debe evitar.
+- **Game**: Controla la lógica del juego.
+
+## Compilación y Ejecución
+
+Para compilar el proyecto, ejecuta el siguiente comando en la terminal:
+
+```bash
+make

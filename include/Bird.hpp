@@ -3,11 +3,13 @@
 
 class Bird {
 public:
-    Bird();
-    void flapWings();
+    Bird(int initialX, int initialY);
+    void moveUp();
+    int getX();
+    int getY();
 private:
-    int positionX;
-    int positionY;
+    int x;
+    int y;
 };
 
 #endif

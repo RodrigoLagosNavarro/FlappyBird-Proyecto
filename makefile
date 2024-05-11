@@ -1,22 +1,25 @@
-CC=g++
-CFLAGS=-c -Wall
+CC = g++
+CFLAGS = -Wall -Wextra -std=c++11
+LDFLAGS = -lwinmm
 
-all: flappybird
+SRC_DIR = src
+INCLUDE_DIR = include
+BIN_DIR = bin
 
-flappybird: main.o FlappyBird.o Bird.o Pipe.o
-    $(CC) main.o FlappyBird.o Bird.o Pipe.o -o flappybird
+SRCS = $(wildcard $(SRC_DIR)/*.cpp)
+OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
 
-main.o: src/main.cpp
-    $(CC) $(CFLAGS) src/main.cpp
+TARGET = $(BIN_DIR)/flappy_bird
 
-FlappyBird.o: src/FlappyBird.cpp
-    $(CC) $(CFLAGS) src/FlappyBird.cpp
+.PHONY: all clean
 
-Bird.o: src/Bird.cpp
-    $(CC) $(CFLAGS) src/Bird.cpp
+all: $(TARGET)
 
-Pipe.o: src/Pipe.cpp
-    $(CC) $(CFLAGS) src/Pipe.cpp
+$(TARGET): $(OBJS)
+    $(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
+
+$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
+    $(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
 
 clean:
-    rm -rf *o flappybird
+    $(RM) $(OBJS) $(TARGET)

@@ -1,15 +1,15 @@
 #include "Pipe.hpp"
 
-Pipe::Pipe(int startY) : positionX(50), positionY(startY) {}
+Pipe::Pipe(int initialX, int initialY) : x(initialX), y(initialY) {}
 
-void Pipe::move() {
-    positionX--;
+void Pipe::moveLeft() {
+    x--;
 }
 
-int Pipe::getX() const {
-    return positionX;
+int Pipe::getX() {
+    return x;
 }
 
-int Pipe::getY() const {
-    return positionY;
+int Pipe::getY() {
+    return y;
 }

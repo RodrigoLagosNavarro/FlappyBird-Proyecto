@@ -3,13 +3,13 @@
 
 class Pipe {
 public:
-    Pipe(int startY);
-    void move();
-    int getX() const;
-    int getY() const;
+    Pipe(int initialX, int initialY);
+    void moveLeft();
+    int getX();
+    int getY();
 private:
-    int positionX;
-    int positionY;
+    int x;
+    int y;
 };
 
-#endif // PIPE_HPP
+#endif
