@@ -1,15 +1,20 @@
-#ifndef BIRD_HPP
-#define BIRD_HPP
+#pragma once 
 
-class Bird {
-public:
-    Bird(int initialX, int initialY);
-    void moveUp();
-    int getX();
-    int getY();
+class Bird
+{
 private:
-    int x;
-    int y;
+   int posX, posY;
+   bool vida;
+
+public:
+
+    Bird(){
+        
+    }
+    void saltar(){
+
+    }
+   
+    
 };
 
-#endif

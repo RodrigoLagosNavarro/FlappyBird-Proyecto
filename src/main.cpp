@@ -1,96 +1,99 @@
-#include <windows.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <time.h>
-#include "Bird.hpp"
-#include "Pipe.hpp"
+#include<ftxui/component/animation.hpp>
+#include<ftxui/dom/elements.hpp>
+#include<ftxui/screen/screen.hpp>
+#include<ftxui/screen/color.hpp>
 
-#define xSize       32 
-#define ySize       16 
-#define pipeCount   3
-#define qKey        0x51
-#define GREEN       "\e[32m"
-#define YELLOW      "\e[33m"
-#define NC          "\e[0m"
+#include <iostream>
+#include <string>
+#include <thread>
+#include <experimental/random>
+#include <list>
+#include<fstream>
 
-void Draw(Bird &bird, Pipe pipes[]);
-void Pipes(Pipe pipes[]);
-void HitTest(Bird &bird, Pipe pipes[]);
+using namespace std;
+using namespace ftxui;
 
-void Draw(Bird &bird, Pipe pipes[]) {
-    char buff[5000];
-    strcpy(buff, "\e[17A");
+int main(int argc, char const *argv[])
+{
+    list<string> textos;
 
-    for (int y = 0; y <= ySize; y++) {
-        for (int x = 0; x <= xSize; x++) {
-            // Resto del código de la función Draw
-        }
+    fstream imagen;
+    imagen.open("./assets/imagen.txt");
+    string linea;
+    while (getline(imagen, linea))
+    {
+        textos.push_back(linea);
     }
 
-    printf(buff);
-}
+    imagen.close();
 
-void Pipes(Pipe pipes[]) {
-    for (int i = 0; i < pipeCount; i++) {
-        if (pipes[i].getX() == -1) {
-            (i == 0) ? (pipes[i].x = pipes[2].getX() + 15) : (pipes[i].x = pipes[i - 1].getX() + 15);
-            pipes[i].y = (rand()%7) + 5;
-        }
-    }
-}
+    int fotograma = 0;
+    string reset;
 
-void HitTest(Bird &bird, Pipe pipes[]) {
-    if (bird.getY() == 15) {
-        exit(0);
-    }
+    int posX = 0;
+    int posY = 6;
+    int velocidadVertical = 1;
+    bool ascendiendo = false;
 
-    for (int i = 0; i < pipeCount; i++) {
-        // Resto del código de la función HitTest
-    }
-}
+    while (true)
+    {
 
-int main() {
-    srand(time(NULL));
-    system("title \"Not Flappy Duck\"");
+        Dimensions alto = Dimension::Full();
+        Dimensions ancho = Dimension::Full();
 
-    Bird bird(10, 10);
-    Pipe pipes[pipeCount] = {Pipe(25, (rand()%7) + 5), Pipe(40, (rand()%7) + 5), Pipe(55, (rand()%7) + 5)};
-
-    int frame = 0;
-
-    printf("Press UP to jump and Q to quit.\n");
-
-    for (int i = 0; i <= ySize; i++) {
-        printf("\n");
-    }
-
-    Draw(bird, pipes);
-
-    system("pause>nul");
-
-    while (1) {
-        if (GetAsyncKeyState(VK_UP)) {
-            bird.moveUp();
-        }
-
-        if (GetAsyncKeyState(qKey)) {
-            break;
-        }
-
-        if (frame == 2) {
-            bird.moveDown();
-            for (int i = 0; i < 3; i++) {
-                pipes[i].moveLeft();
+        if(true){
+            if (ascendiendo)
+            {
+                posY -= velocidadVertical;
+                if(posY <= 0 + 1)
+                ascendiendo = false;
             }
-            frame = 0;
+            else{
+                posY += velocidadVertical;
+                if(posY >= alto.dimy-textos.size() - 1)
+                ascendiendo = true;
+            }
+            
         }
 
-        HitTest(bird, pipes);
-        Draw(bird, pipes);
-        Pipes(pipes);
-        frame++;
-        Sleep(100);
-    }
+        Element dibujo = border({
+            hbox()
+        });
 
+        Screen pantalla = Screen::Create(ancho, alto);
+        
+        Render(pantalla, dibujo);
+
+        int l = 0;
+        for (auto &&texto : textos){
+            int i = 0;
+
+            for (auto &&letra : texto)
+            {
+                //if (posX + i < ancho.dimx){
+                    pantalla.PixelAt(posX + i, posY + l).character = letra;
+                //}
+                i++;
+            }
+            l++;
+            
+        }
+        posX++;
+
+        if(posX >= ancho.dimx){
+            posX = 0;
+        }
+
+        pantalla.Print();
+        reset = pantalla.ResetPosition();
+
+        cout<<reset;
+        fotograma++;
+        this_thread::sleep_for(0.1s);
+
+    }
+    
+    
     return 0;
 }
+

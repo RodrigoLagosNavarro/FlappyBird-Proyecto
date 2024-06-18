@@ -1,25 +1,5 @@
-CC = g++
-CFLAGS = -Wall -Wextra -std=c++11
-LDFLAGS = -lwinmm
+bin/ani : src/main.cpp
+	g++ src/main.cpp -o bin/ani -I FTXUI/include/ -L FTXUI/build -lftxui-component -lftxui-dom -lftxui-screen -std=c++17
 
-SRC_DIR = src
-INCLUDE_DIR = include
-BIN_DIR = bin
-
-SRCS = $(wildcard $(SRC_DIR)/*.cpp)
-OBJS = $(SRCS:$(SRC_DIR)/%.cpp=$(BIN_DIR)/%.o)
-
-TARGET = $(BIN_DIR)/flappy_bird
-
-.PHONY: all clean
-
-all: $(TARGET)
-
-$(TARGET): $(OBJS)
-    $(CC) $(CFLAGS) $(LDFLAGS) $^ -o $@
-
-$(BIN_DIR)/%.o: $(SRC_DIR)/%.cpp
-    $(CC) $(CFLAGS) -I$(INCLUDE_DIR) -c $< -o $@
-
-clean:
-    $(RM) $(OBJS) $(TARGET)
+run : bin/ani
+	./bin/ani

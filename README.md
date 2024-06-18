@@ -17,12 +17,16 @@ El proyecto está estructurado de la siguiente manera:
 El diagrama de clases del proyecto incluye las siguientes clases:
 
 - **Bird**: Representa al pájaro en el juego.
-- **Pipe**: Representa las tuberías que el pájaro debe evitar.
-- **Game**: Controla la lógica del juego.
+- **Tubo**: Representa las tuberías que el pájaro debe evitar.
+- **Juego**: Controla la lógica del juego.
+
+## Integrantes:
+    Rodrigo Lagos Navarro 23110148
+    Oscar Fernando Rodriguez 23110141
 
 ## Compilación y Ejecución
 
 Para compilar el proyecto, ejecuta el siguiente comando en la terminal:
 
 ```bash
-make
+make run

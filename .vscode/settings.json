@@ -1,8 +1,7 @@
 {
+    "cmake.sourceDirectory": "/workspaces/flappy-bird-project",
+    "C_Cpp.default.compilerPath": "/usr/bin/g++",
     "files.associations": {
-        "fstream": "cpp",
-        "*.tcc": "cpp",
-        "thread": "cpp",
-        "string": "cpp"
+        "iostream": "cpp"
     }
 }
