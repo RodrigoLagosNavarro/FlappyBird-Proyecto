@@ -1,6 +1,6 @@
 # Flappy Bird Game
 
-Este proyecto es una implementación simple del juego Flappy Bird en C, utilizando la biblioteca de Windows para la interfaz gráfica. El juego presenta un pájaro que el jugador puede hacer saltar para evitar obstáculos en forma de tuberías que se desplazan hacia la izquierda.
+Este proyecto es una implementación simple del juego Flappy Bird en C, utilizando la biblioteca SFML. El juego presenta un pájaro que el jugador puede hacer saltar para evitar obstáculos en forma de tuberías que se desplazan hacia la izquierda.
 
 ## Estructura del Proyecto
 
@@ -21,7 +21,7 @@ El diagrama de clases del proyecto incluye las siguientes clases:
 - **Juego**: Controla la lógica del juego.
 
 ## Integrantes:
-    Oscar Fernando Rodriguez 23110141
+
     Rodrigo Lagos Navarro 23110148
    
 
