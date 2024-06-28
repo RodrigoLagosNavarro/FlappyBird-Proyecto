@@ -71,9 +71,9 @@ Sonido::Sonido()
         puntajeT.setString(std::to_string(puntaje));
         puntajeT.setOrigin(puntajeT.getGlobalBounds().width/2,puntajeT.getGlobalBounds().height/2);
     }
-    void Sonido::Incializado(bool i)
+    void Sonido::Incializado(bool estado)
     {
-        incializado = i;
+        incializado = estado;
         puntaje = 0;
         gameOver = false;
         std::ifstream in("puntaje");

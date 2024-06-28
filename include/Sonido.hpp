@@ -3,7 +3,7 @@
 #include "SFML/Audio.hpp"
 #include <fstream>
 
-class Sonido
+class Sonido : public sf::Drawable
 {
 private:
     sf::SoundBuffer puntosBird;

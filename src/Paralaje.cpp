@@ -3,13 +3,13 @@
 Paralaje::Paralaje()
 {
     ultimo=-1;
-    inciado=false;
+    iniciado=false;
     puntaje=0;
-    if(!obstaculoT.loadFromFile("assets/images/Tubo.png"))
+    if(!obstaculoT.loadFromFile("assets/image/tubo.png"))
     {
         std::cout<<"Error al cargar la textura"<<std::endl;
     }
-    if(!baseT.loadFromFile("assets/images/base.png"))
+    if(!baseT.loadFromFile("assets/image/base.png"))
     {
         std::cout<<"Error al cargar la textura"<<std::endl;
     }
@@ -33,7 +33,7 @@ void Paralaje::Actualizar()
 {
     for(int i=0;i<(int)bases.size();i++)
     {
-        if(bases[i].getPosition().x<-336*1.5f)
+        if(bases[i].getPosition().x<-(336*1.5f))
         {
             sf::Sprite nSprite=bases[(int)bases.size()-1];
             nSprite.setPosition(nSprite.getPosition().x+336*1.5f,700-112);
@@ -46,24 +46,27 @@ void Paralaje::Actualizar()
     {
         bases[i].move(-2.5f,0);
     }
-    if(!inciado) return;
+    if(!iniciado) return;
     int ultimo=(int)obstaculos.size()-1;
     for(int i=0;i<(int)obstaculos.size();i++)
     {
-        if(obstaculos[i].GetPosicion().x<100&&i>ultimo)
+        if(obstaculos[i].GetPosicion().x<100&& obstaculos[i].GetPosicion().x>posicionUltimoObstaculoPasado)
         {
-            ultimo=i;
             puntaje++;
+            posicionUltimoObstaculoPasado=obstaculos[i].GetPosicion().x;
         }
-        if(obstaculos[i].GetPosicion().x<=1000)
+        if(obstaculos[i].GetPosicion().x<=-100)
         {
-            ultimo--,obstaculos.erase(obstaculos.begin()+i),obstaculos.push_back(Obstaculo(obstaculoT,obstaculos[ultimo].GetPosicion().x+350,100+rand()%250));
+            obstaculos.erase(obstaculos.begin()+i);
+        i--; // Ajustar el índice después de borrar
+        obstaculos.push_back(Obstaculo(obstaculoT, obstaculos[ultimo].GetPosicion().x+350, 100+rand()%250));
+        if(i < ultimo) ultimo--;
         }
+    }
         for(int i=0;i<(int)obstaculos.size();i++)
         {
             obstaculos[i].Actualizar();
         }
-}
 }
 
 bool Paralaje::Colision(sf::IntRect rect)
@@ -80,9 +83,9 @@ int Paralaje::Puntaje()
     return puntaje;
 }
 
-void Paralaje::Inciado()
+void Paralaje::Iniciado()
 {
-    inciado=true;
+    iniciado=true;
 }
 
 void Paralaje::draw(sf::RenderTarget &rt, sf::RenderStates rs) const{

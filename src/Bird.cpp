@@ -3,20 +3,20 @@
 Bird::Bird(int x, int y)
 {
     vida = true;
-    inciado = false;
+    iniciado = false;
     estado = 0;
     relojEstado = 10;
     mover = 0;
     estados.resize(3);
-    if (!estados[0].loadFromFile("assets/images/birdArriba.png"))
+    if (!estados[0].loadFromFile("assets/image/birdArriba.png"))
     {
         std::cout << "Error al cargar la textura" << std::endl;
     }
-    if (!estados[1].loadFromFile("assets/images/birdMedio.png"))
+    if (!estados[1].loadFromFile("assets/image/birdMedio.png"))
     {
         std::cout << "Error al cargar la textura" << std::endl;
     }
-    if (!estados[2].loadFromFile("assets/images/birdAbajo.png"))
+    if (!estados[2].loadFromFile("assets/image/birdAbajo.png"))
     {
         std::cout << "Error al cargar la textura" << std::endl;
     }
@@ -49,7 +49,7 @@ void Bird::Actualizar()
         relojEstado = 10;
     }
 
-    if (!inciado)
+    if (!iniciado)
         return;
     sprite.move(0, mover);
     mover += 0.5f;
@@ -81,9 +81,9 @@ void Bird::Muerte()
     vida = false;
 }
 
-void Bird::Inciado()
+void Bird::Iniciado()
 {
-    inciado = true;
+    iniciado = true;
 }
 
 void Bird::draw(sf::RenderTarget &rt, sf::RenderStates rs) const

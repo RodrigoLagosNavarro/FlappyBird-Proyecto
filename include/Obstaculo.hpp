@@ -1,7 +1,7 @@
 #include <iostream>
 #include "SFML/Graphics.hpp"
 
-class Obstaculo
+class Obstaculo : public sf::Drawable
 {
 private:
     sf::Sprite spriteSuperior;
