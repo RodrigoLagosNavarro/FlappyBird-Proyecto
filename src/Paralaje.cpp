@@ -3,6 +3,7 @@
 Paralaje::Paralaje()
 {
     ultimo=-1;
+    posicionUltimoObstaculoPasado = -1;
     iniciado=false;
     puntaje=0;
     if(!obstaculoT.loadFromFile("assets/image/tubo.png"))
@@ -48,21 +49,21 @@ void Paralaje::Actualizar()
     }
     if(!iniciado) return;
     int ultimo=(int)obstaculos.size()-1;
-    for(int i=0;i<(int)obstaculos.size();i++)
+    for(int i=0; i<(int)obstaculos.size(); i++)
+{
+    if(obstaculos[i].GetPosicion().x < 100 && obstaculos[i].GetPosicion().x > posicionUltimoObstaculoPasado)
     {
-        if(obstaculos[i].GetPosicion().x<100&& obstaculos[i].GetPosicion().x>posicionUltimoObstaculoPasado)
-        {
-            puntaje++;
-            posicionUltimoObstaculoPasado=obstaculos[i].GetPosicion().x;
-        }
-        if(obstaculos[i].GetPosicion().x<=-100)
-        {
-            obstaculos.erase(obstaculos.begin()+i);
+        puntaje++;
+        posicionUltimoObstaculoPasado = obstaculos[i].GetPosicion().x;
+    }
+    if(obstaculos[i].GetPosicion().x <= -100)
+    {
+        obstaculos.erase(obstaculos.begin()+i);
         i--; // Ajustar el índice después de borrar
         obstaculos.push_back(Obstaculo(obstaculoT, obstaculos[ultimo].GetPosicion().x+350, 100+rand()%250));
         if(i < ultimo) ultimo--;
-        }
     }
+}
         for(int i=0;i<(int)obstaculos.size();i++)
         {
             obstaculos[i].Actualizar();
