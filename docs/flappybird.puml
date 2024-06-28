@@ -1,5 +1,7 @@
 @startuml FlappyBird 
 
+
+
 class Juego{
     -score : int
     -pajaro : Bird
