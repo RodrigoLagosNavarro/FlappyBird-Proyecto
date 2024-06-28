@@ -1,20 +1,25 @@
-#pragma once 
+#pragma once
+#include <iostream>
+#include "SFML/Graphics.hpp" 
 
-class Bird
+class Bird : public sf::Drawable  //Clase Bird de personaje principal
 {
 private:
-   int posX, posY;
-   bool vida;
+    bool vida;
+    bool inciado;
+    int estado;
+    int relojEstado;
+    std::vector<sf::Texture> estados;
+    sf::Sprite sprite;
+    float mover;
 
 public:
-
-    Bird(){
-        
-    }
-    void saltar(){
-
-    }
-   
-    
+    Bird(int, int);
+    void Actualizar();
+    void Saltar();
+    void Muerte();
+    bool ObtenerVida();
+    sf::Vector2f ObtenerPosicion();
+    void Inciado();
+    virtual void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
-
