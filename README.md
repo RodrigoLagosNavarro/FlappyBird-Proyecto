@@ -29,5 +29,14 @@ El diagrama de clases del proyecto incluye las siguientes clases:
 
 Para compilar el proyecto, ejecuta el siguiente comando en la terminal:
 
-```bash
-make run
+    make runmain
+
+en caso de que no funcione ejecutar
+
+    make clean 
+    make runmain
+
+
+# Capturas de pantalla 
+![alt text](image.png)
+![alt text](image-1.png)
