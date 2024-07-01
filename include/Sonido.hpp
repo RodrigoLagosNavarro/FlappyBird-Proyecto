@@ -18,7 +18,7 @@ private:
     sf::Text puntajeT;
     int maxPuntaje;
     int puntaje;
-    bool incializado,gameOver;
+    bool incializado, gameOver;
     sf::Texture gameOverT;
     sf::Sprite gameOverS;
     sf::Texture incializadoTextura;
@@ -29,7 +29,6 @@ public:
     void DefinirPuntaje(int);
     void Incializado(bool);
     void GameOver();
-    void Aleteo(); 
+    void Aleteo();
     virtual void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
-

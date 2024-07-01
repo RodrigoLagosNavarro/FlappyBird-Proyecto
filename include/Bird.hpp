@@ -1,8 +1,8 @@
 #pragma once
 #include <iostream>
-#include "SFML/Graphics.hpp" 
+#include "SFML/Graphics.hpp"
 
-class Bird : public sf::Drawable  //Clase Bird de personaje principal
+class Bird : public sf::Drawable // Clase Bird de personaje principal
 {
 private:
     bool vida;

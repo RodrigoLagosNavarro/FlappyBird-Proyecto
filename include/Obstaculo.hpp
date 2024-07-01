@@ -6,8 +6,9 @@ class Obstaculo : public sf::Drawable
 private:
     sf::Sprite spriteSuperior;
     sf::Sprite spriteInferior;
+
 public:
-    Obstaculo(sf::Texture&,int,int);
+    Obstaculo(sf::Texture &, int, int);
     void Actualizar();
     bool Colision(sf::IntRect);
     sf::Vector2f GetPosicion();

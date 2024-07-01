@@ -3,7 +3,7 @@
 #include <time.h>
 #include "Obstaculo.hpp"
 
-class Paralaje : public sf::Drawable 
+class Paralaje : public sf::Drawable
 {
 private:
     int ultimo;
@@ -14,11 +14,12 @@ private:
     std::vector<sf::Sprite> bases;
     std::vector<Obstaculo> obstaculos;
     int posicionUltimoObstaculoPasado;
+
 public:
-    Paralaje ();
+    Paralaje();
     void Actualizar();
     bool Colision(sf::IntRect);
     void Iniciado();
     int Puntaje();
-    virtual void draw(sf::RenderTarget&, sf::RenderStates) const;
+    virtual void draw(sf::RenderTarget &, sf::RenderStates) const;
 };
